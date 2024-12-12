@@ -1,0 +1,63 @@
+<section class="Material-contact-section section-padding section-dark">
+  <div class="container">
+    <div class="row">
+      <!-- Section Titile -->
+      <div class="col-md-12 wow animated fadeInLeft" data-wow-delay=".2s">
+        <h1 class="section-title">Love to Hear From You</h1>
+      </div>
+    </div>
+    <div class="row">
+      <!-- Section Titile -->
+      <div class="col-md-6 mt-3 contact-widget-section2 wow animated fadeInLeft" data-wow-delay=".2s">
+        <p>Please share your thoughts or inquiries with us. We value your feedback and will respond as soon as possible.
+        </p>
+
+        <div class="find-widget">
+          Name: <a>{{ name$ | async }}</a>
+        </div>
+        <div class="find-widget">
+          Email: <a>{{ email$ | async }}</a>
+        </div>
+        <div class="find-widget">
+          Subject: <a>{{ subject$ | async }}</a>
+        </div>
+        <div class="find-widget">
+          Message: <a>{{ message$ | async }}</a>
+        </div>
+      </div>
+      <!-- contact form -->
+      <div class="col-md-6 wow animated fadeInRight" data-wow-delay=".2s">
+        <form class="shake" role="form" method="post" id="contactForm" name="contact-form" data-toggle="validator">
+          <!-- Name -->
+          <div class="form-group label-floating">
+            <label class="control-label" for="name">Name</label>
+            <input class="form-control" id="name" type="text" name="name" (input)="modifyDetails($event, 'name')"
+              required data-error="Please enter your name">
+            <div class="help-block with-errors"></div>
+          </div>
+          <!-- email -->
+          <div class="form-group label-floating">
+            <label class="control-label" for="email">Email</label>
+            <input class="form-control" id="email" type="email" name="email" (input)="modifyDetails($event, 'email')"
+              required data-error="Please enter your Email">
+            <div class="help-block with-errors"></div>
+          </div>
+          <!-- Subject -->
+          <div class="form-group label-floating">
+            <label class="control-label">Subject</label>
+            <input class="form-control" id="msg_subject" type="text" name="subject"
+              (input)="modifyDetails($event, 'subject')" required data-error="Please enter your message subject">
+            <div class="help-block with-errors"></div>
+          </div>
+          <!-- Message -->
+          <div class="form-group label-floating">
+            <label for="message" class="control-label">Message</label>
+            <textarea class="form-control" rows="3" id="message" name="message"
+              (input)="modifyDetails($event, 'message')" required data-error="Write your message"></textarea>
+            <div class="help-block with-errors"></div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>

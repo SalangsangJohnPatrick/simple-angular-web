@@ -1,0 +1,46 @@
+/* Custom default button */
+.btn-secondary {
+    color: #333;
+    text-shadow: none;
+    /* Prevent inheritance from `body` */
+    background-color: #fff;
+    border: .05rem solid #333;
+}
+
+.btn-secondary:hover,
+.btn-secondary:focus {
+    color: #fff;
+    background-color: #333;
+    transition: 0.5s ease;
+}
+
+
+/*
+ * Base structure
+ */
+
+.cover-container {
+    max-width: 42em;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.text-center {
+    background-color: #f9f9f9;
+    height: 100vh;
+    overflow: hidden;
+}
+
+
+/*
+ * Cover
+ */
+.cover {
+    padding: 0 1.5rem;
+}
+
+.cover .btn-lg {
+    padding: .75rem 1.25rem;
+    font-weight: 700;
+}
