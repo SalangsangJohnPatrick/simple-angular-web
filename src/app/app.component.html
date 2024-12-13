@@ -3,12 +3,20 @@
     <a class="navbar-brand">Routing Activity</a>
 
     <div class="collapse navbar-collapse" id="navbarsExample07">
-      <ul ngbNav #nav="ngbNav" class="navbar-nav mr-auto">
-        <li ngbNavItem="home" class="nav-item active">
-          <a ngbNavLink routerLink="/home" class="nav-link">Home</a>
+      <ul class="navbar-nav mr-auto">
+        <!-- Home Nav Item -->
+        <li class="nav-item">
+          <a routerLink="/home" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" class="nav-link">
+            Home
+          </a>
         </li>
-        <li ngbNavItem="contact" class="nav-item active">
-          <a ngbNavLink routerLink="/contact" class="nav-link">Contact</a>
+
+        <!-- Contact Nav Item -->
+        <li class="nav-item">
+          <a routerLink="/contact" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }"
+            class="nav-link">
+            Contact
+          </a>
         </li>
       </ul>
     </div>
