@@ -13,48 +13,52 @@
         </p>
 
         <div class="find-widget">
-          Name: <a>{{ name$ | async }}</a>
+          Name: <a>{{ contactForm.get('name')?.value }}</a>
         </div>
         <div class="find-widget">
-          Email: <a>{{ email$ | async }}</a>
+          Email: <a>{{ contactForm.get('email')?.value }}</a>
         </div>
         <div class="find-widget">
-          Subject: <a>{{ subject$ | async }}</a>
+          Subject: <a>{{ contactForm.get('subject')?.value }}</a>
         </div>
         <div class="find-widget">
-          Message: <a>{{ message$ | async }}</a>
+          Message: <a>{{ contactForm.get('message')?.value }}</a>
         </div>
       </div>
       <!-- contact form -->
       <div class="col-md-6 wow animated fadeInRight" data-wow-delay=".2s">
-        <form class="shake" role="form" method="post" id="contactForm" name="contact-form" data-toggle="validator">
+        <form [formGroup]="contactForm" (ngSubmit)="onSubmit()" class="shake" role="form" method="post"
+          id="contactForm"> 
           <!-- Name -->
           <div class="form-group label-floating">
             <label class="control-label" for="name">Name</label>
-            <input class="form-control" id="name" type="text" name="name" (input)="modifyDetails($event, 'name')"
-              required data-error="Please enter your name">
+            <input formControlName="name" class="form-control" type="text">
             <div class="help-block with-errors"></div>
           </div>
           <!-- email -->
           <div class="form-group label-floating">
             <label class="control-label" for="email">Email</label>
-            <input class="form-control" id="email" type="email" name="email" (input)="modifyDetails($event, 'email')"
-              required data-error="Please enter your Email">
+            <input formControlName="email" class="form-control" type="email">
             <div class="help-block with-errors"></div>
           </div>
           <!-- Subject -->
           <div class="form-group label-floating">
             <label class="control-label">Subject</label>
-            <input class="form-control" id="msg_subject" type="text" name="subject"
-              (input)="modifyDetails($event, 'subject')" required data-error="Please enter your message subject">
+            <input formControlName="subject" class="form-control" id="msg_subject" type="text">
             <div class="help-block with-errors"></div>
           </div>
           <!-- Message -->
           <div class="form-group label-floating">
             <label for="message" class="control-label">Message</label>
-            <textarea class="form-control" rows="3" id="message" name="message"
-              (input)="modifyDetails($event, 'message')" required data-error="Write your message"></textarea>
+            <textarea formControlName="message" class="form-control" id="message" rows="3"></textarea>
             <div class="help-block with-errors"></div>
+          </div>
+          <!-- Form Submit -->
+          <div class="form-submit mt-5">
+            <button class="btn btn-dark" type="submit" [disabled]="contactForm.invalid" id="form-submit"><i
+                class="material-icons mdi mdi-message-outline"></i> Send Message</button>
+            <div id="msgSubmit" class="h3 text-center hidden"></div>
+            <div class="clearfix"></div>
           </div>
         </form>
       </div>

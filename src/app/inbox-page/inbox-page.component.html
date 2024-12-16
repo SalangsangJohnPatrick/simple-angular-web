@@ -1,0 +1,33 @@
+<div class="container mt-5">
+    <div class="row justify-content-center">
+      <div class="col-md-8">
+        <div class="card">
+          <div class="card-header bg-dark text-white">
+            <h4 class="mb-0">Inbox</h4>
+          </div>
+          <div class="card-body">
+            <table class="table table-striped">
+              <thead>
+                <tr>
+                  <th scope="col">Name</th>
+                  <th scope="col">Email</th>
+                  <th scope="col">Subject</th>
+                  <th scope="col">Message</th>
+                </tr>
+              </thead>
+              <tbody>
+                <!-- Loop through messages using *ngFor -->
+                <tr *ngFor="let message of messages$ | async">
+                  <td>{{ message.name || 'N/A' }}</td>
+                  <td>{{ message.email || 'N/A' }}</td>
+                  <td>{{ message.subject || 'N/A' }}</td>
+                  <td>{{ message.message || 'N/A' }}</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  

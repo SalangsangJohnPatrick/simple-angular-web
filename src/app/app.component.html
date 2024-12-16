@@ -1,26 +1,37 @@
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-  <div class="container">
-    <a class="navbar-brand">Routing Activity</a>
+    <div class="container">
+      <a class="navbar-brand"> {{ title }} </a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExample07" aria-controls="navbarsExample07" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+  
+      <div class="collapse navbar-collapse" id="navbarsExample07">
+        <ul class="navbar-nav mr-auto">
+          <!-- Home Nav Item -->
+          <li class="nav-item">
+            <a routerLink="/home" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" class="nav-link">
+              Home
+            </a>
+          </li>
+  
+          <!-- Contact Nav Item -->
+          <li class="nav-item">
+            <a routerLink="/contact" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }"
+              class="nav-link">
+              Contact
+            </a>
+          </li>
 
-    <div class="collapse navbar-collapse" id="navbarsExample07">
-      <ul class="navbar-nav mr-auto">
-        <!-- Home Nav Item -->
-        <li class="nav-item">
-          <a routerLink="/home" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" class="nav-link">
-            Home
-          </a>
-        </li>
-
-        <!-- Contact Nav Item -->
-        <li class="nav-item">
-          <a routerLink="/contact" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }"
-            class="nav-link">
-            Contact
-          </a>
-        </li>
-      </ul>
+          <!-- Inbox Nav Item -->
+          <li class="nav-item">
+            <a routerLink="/inbox" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }"
+              class="nav-link">
+              Inbox
+            </a>
+          </li>
+        </ul>
+      </div>
     </div>
-  </div>
 </nav>
 
 <router-outlet></router-outlet>

@@ -2,15 +2,17 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 import { ContactPageRoutingModule } from './contact-page-routing.module';
-import { HomePageComponent } from '../home-page/home-page.component';
+import { ReactiveFormsModule } from '@angular/forms';
+import { ContactPageComponent } from './contact-page.component';
 
 @NgModule({
   declarations: [
-    HomePageComponent
+    ContactPageComponent
   ],
   imports: [
     CommonModule,
-    ContactPageRoutingModule
+    ContactPageRoutingModule,
+    ReactiveFormsModule,
   ]
 })
-export class ContactPageModule { }
+export class ContactPageModule { } 
