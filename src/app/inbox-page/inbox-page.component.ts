@@ -19,19 +19,24 @@ export class InboxPageComponent implements OnInit {
   constructor(private contactService: ContactService) {}
 
   ngOnInit(): void {
-    // Use combineLatest to get the latest values from each observable
-    combineLatest([
-      this.contactService.name$,
-      this.contactService.email$,
-      this.contactService.subject$,
-      this.contactService.message$
-    ]).subscribe(([name, email, subject, message]) => {
-      // Push a new message object to the existing messages array
-      const currentMessages = this.messagesSubject.value;
-      currentMessages.push({ name, email, subject, message });
+    // // Use combineLatest to get the latest values from each observable
+    // combineLatest([
+    //   this.contactService.name$,
+    //   this.contactService.email$,
+    //   this.contactService.subject$,
+    //   this.contactService.message$
+    // ]).subscribe(([name, email, subject, message]) => {
+    //   // Push a new message object to the existing messages array
+    //   const currentMessages = this.messagesSubject.value;
+    //   currentMessages.push({ name, email, subject, message });
 
-      // Emit the updated array of messages
-      this.messagesSubject.next(currentMessages);
-    });
+    //   // Emit the updated array of messages
+    //   this.messagesSubject.next(currentMessages);
+    // });
+
+    console.log(this.contactService.name$);
+    console.log(this.contactService.email$);
+    console.log(this.contactService.subject$);
+    console.log(this.contactService.message$);
   }
 }

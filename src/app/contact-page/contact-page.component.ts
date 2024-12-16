@@ -35,12 +35,14 @@ export class ContactPageComponent implements OnInit, OnDestroy {
   }
 
   onSubmit(): void {
-    // Save form data to local storage
-    localStorage.setItem('contactData', JSON.stringify(this.contactForm.value));
-    console.log(this.contactForm.value);
+    // // Save the form data to local storage
+    // localStorage.setItem('contactFormData', JSON.stringify(this.contactForm.value));
+  
+    console.log('Form data appended to local storage:', this.contactForm.value);
 
-    // this.router.navigate(['/inbox']);
+    this.router.navigate(['/inbox']);
   }
+  
 
   ngOnDestroy(): void {
     // Unsubscribe from all subscriptions when the component is destroyed
