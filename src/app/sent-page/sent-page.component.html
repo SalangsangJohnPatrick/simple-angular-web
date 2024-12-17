@@ -3,7 +3,7 @@
       <div class="col-md-8">
         <div class="card">
           <div class="card-header bg-dark text-white">
-            <h4 class="mb-0">People who have sent you a message</h4>
+            <h4 class="mb-0">Sent Mails</h4>
           </div>
           <div class="card-body">
             <table class="table table-striped">
@@ -17,11 +17,11 @@
               </thead>
               <tbody>
                 <!-- Loop through messages using *ngFor -->
-                <tr *ngFor="let message of messages$ | async">
-                  <td>{{ message.name || 'N/A' }}</td>
-                  <td>{{ message.email || 'N/A' }}</td>
-                  <td>{{ message.subject || 'N/A' }}</td>
-                  <td>{{ message.message || 'N/A' }}</td>
+                <tr *ngFor="let mail of mails$ | async">
+                  <td>{{ mail.name }}</td>
+                  <td>{{ mail.email }}</td>
+                  <td>{{ mail.subject }}</td>
+                  <td>{{ mail.message }}</td>
                 </tr>
               </tbody>
             </table>

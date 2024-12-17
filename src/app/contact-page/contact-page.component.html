@@ -25,43 +25,63 @@
           Message: <a>{{ contactForm.get('message')?.value }}</a>
         </div>
       </div>
+
       <!-- contact form -->
       <div class="col-md-6 wow animated fadeInRight" data-wow-delay=".2s">
         <form [formGroup]="contactForm" (ngSubmit)="onSubmit()" class="shake" role="form" method="post"
-          id="contactForm"> 
+          id="contactForm">
           <!-- Name -->
           <div class="form-group label-floating">
             <label class="control-label" for="name">Name</label>
-            <input formControlName="name" class="form-control" type="text">
-            <div class="help-block with-errors"></div>
+            <input formControlName="name" class="form-control" type="text" id="name">
+            <div *ngIf="contactForm.get('name')?.invalid && (contactForm.get('name')?.touched)"
+              class="help-block with-errors text-danger">
+              Name is required.
+            </div>
           </div>
-          <!-- email -->
+
+          <!-- Email -->
           <div class="form-group label-floating">
             <label class="control-label" for="email">Email</label>
             <input formControlName="email" class="form-control" type="email">
-            <div class="help-block with-errors"></div>
+            <div *ngIf="contactForm.get('email')?.invalid && (contactForm.get('email')?.touched)"
+              class="help-block with-errors text-danger">
+              <div *ngIf="contactForm.get('email')?.hasError('required')">Email is required.</div>
+              <div *ngIf="contactForm.get('email')?.hasError('email')">Please enter a valid email address.</div>
+            </div>
           </div>
+
           <!-- Subject -->
           <div class="form-group label-floating">
             <label class="control-label">Subject</label>
             <input formControlName="subject" class="form-control" id="msg_subject" type="text">
-            <div class="help-block with-errors"></div>
+            <div *ngIf="contactForm.get('subject')?.invalid && (contactForm.get('subject')?.touched)"
+              class="help-block with-errors text-danger">
+              Subject is required.
+            </div>
           </div>
+
           <!-- Message -->
           <div class="form-group label-floating">
             <label for="message" class="control-label">Message</label>
             <textarea formControlName="message" class="form-control" id="message" rows="3"></textarea>
-            <div class="help-block with-errors"></div>
+            <div *ngIf="contactForm.get('message')?.invalid && (contactForm.get('message')?.touched)"
+              class="help-block with-errors text-danger">
+              Message is required.
+            </div>
           </div>
+
           <!-- Form Submit -->
           <div class="form-submit mt-5">
-            <button class="btn btn-dark" type="submit" [disabled]="contactForm.invalid" id="form-submit"><i
-                class="material-icons mdi mdi-message-outline"></i> Send Message</button>
+            <button class="btn btn-dark" type="submit" [disabled]="contactForm.invalid" id="form-submit">
+              <i class="material-icons mdi mdi-message-outline"></i> Send Message
+            </button>
             <div id="msgSubmit" class="h3 text-center hidden"></div>
             <div class="clearfix"></div>
           </div>
         </form>
       </div>
+
     </div>
   </div>
 </section>

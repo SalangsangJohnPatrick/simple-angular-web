@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { InboxPageComponent } from './inbox-page.component';
+import { SentPageComponent } from './sent-page.component';
 
-describe('InboxPageComponent', () => {
-  let component: InboxPageComponent;
-  let fixture: ComponentFixture<InboxPageComponent>;
+describe('SentPageComponent', () => {
+  let component: SentPageComponent;
+  let fixture: ComponentFixture<SentPageComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ InboxPageComponent ]
+      declarations: [ SentPageComponent ]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(InboxPageComponent);
+    fixture = TestBed.createComponent(SentPageComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

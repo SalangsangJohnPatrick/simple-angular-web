@@ -93,7 +93,6 @@ fieldset[disabled] .form-group .form-control {
 
 .form-group .help-block {
     position: absolute;
-    display: none
 }
 
 .form-group.is-focused .form-control {

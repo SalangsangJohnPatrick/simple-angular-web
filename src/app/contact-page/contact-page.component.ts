@@ -1,8 +1,8 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ContactService } from '../services/contact.service';
 import { Subscription } from 'rxjs';
-import { Router } from '@angular/router';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-contact-page',
@@ -13,14 +13,17 @@ export class ContactPageComponent implements OnInit, OnDestroy {
 
   contactForm: FormGroup;
   private subscriptions: Subscription[] = [];
+  // submitted: boolean;
 
-  constructor(private formBuilder: FormBuilder, private contactService: ContactService, private router: Router) {
+  constructor(
+    private formBuilder: FormBuilder,
+    private contactService: ContactService) {
     // Initialize the form
     this.contactForm = this.formBuilder.group({
-      name: [''],
-      email: [''],
-      subject: [''],
-      message: ['']
+      name: ['', Validators.required],
+      email: ['', [Validators.required, Validators.email]],
+      subject: ['', Validators.required],
+      message: ['', Validators.required]
     });
   }
 
@@ -37,12 +40,32 @@ export class ContactPageComponent implements OnInit, OnDestroy {
   onSubmit(): void {
     // // Save the form data to local storage
     // localStorage.setItem('contactFormData', JSON.stringify(this.contactForm.value));
-  
-    console.log('Form data appended to local storage:', this.contactForm.value);
+    console.log('Form data sent:', this.contactForm.value);
 
-    this.router.navigate(['/inbox']);
+    // Display the SweetAlert with an interactive confirmation
+    Swal.fire({
+      title: 'Are you sure?',
+      text: 'Do you want to submit the form?',
+      icon: 'question',
+      showCancelButton: true,
+      confirmButtonText: 'Yes, submit it!',
+      cancelButtonText: 'No, cancel!',
+      reverseButtons: true
+    }).then((result) => {
+      if (result.isConfirmed) {
+        // Handle the successful confirmation (form submission)
+        Swal.fire('Success!', 'Form submitted successfully!', 'success');
+
+        this.contactService.addMailToOutbox(this.contactForm.value);
+
+        this.contactForm.reset();
+
+      } else if (result.dismiss === Swal.DismissReason.cancel) {
+        Swal.fire('Cancelled', 'Form submission was cancelled.', 'error');
+      }
+    });
   }
-  
+
 
   ngOnDestroy(): void {
     // Unsubscribe from all subscriptions when the component is destroyed

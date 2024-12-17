@@ -16,8 +16,8 @@ const routes: Routes = [
     loadChildren: () => import('./contact-page/contact-page.module').then(m => m.ContactPageModule)
   },
   {
-    path: 'inbox',
-    loadChildren: () => import('./inbox-page/inbox-page.module').then(m => m.InboxPageModule)
+    path: 'sent',
+    loadChildren: () => import('./sent-page/sent-page.module').then(m => m.SentPageModule)
   }
 ]
 
