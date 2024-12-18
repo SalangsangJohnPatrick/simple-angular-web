@@ -7,23 +7,33 @@
       </div>
     </div>
     <div class="row">
-      <!-- Section Titile -->
+      <!-- Section Title -->
       <div class="col-md-6 mt-3 contact-widget-section2 wow animated fadeInLeft" data-wow-delay=".2s">
-        <p>To get in touch with somebody, fill the form to send an email with your inquiry. 
-          In your email, kindly include the following information:
-        </p>
+        <div class="card shadow-sm rounded p-4">
+          <p class="section-description mb-4 text-muted">To get in touch with somebody, fill the form to send an email
+            with your inquiry.
+            In your email, kindly include the following information:
+          </p>
 
-        <div class="find-widget">
-          Name: <a>{{ contactForm.get('name')?.value }}</a>
-        </div>
-        <div class="find-widget">
-          Email: <a>{{ contactForm.get('email')?.value }}</a>
-        </div>
-        <div class="find-widget">
-          Subject: <a>{{ contactForm.get('subject')?.value }}</a>
-        </div>
-        <div class="find-widget">
-          Message: <a>{{ contactForm.get('message')?.value }}</a>
+          <div class="find-widget mb-3">
+            <strong class="find-widget-label">Name: </strong>
+            <span class="find-widget-value text-black">{{ contactForm.get('name')?.value }}</span>
+          </div>
+          <div class="find-widget mb-3">
+            <strong class="find-widget-label">Email: </strong>
+            <span class="find-widget-value text-black">{{ contactForm.get('email')?.value
+              }}</span>
+          </div>
+          <div class="find-widget mb-3">
+            <strong class="find-widget-label">Subject: </strong>
+            <span class="find-widget-value text-black">{{ contactForm.get('subject')?.value
+              }}</span>
+          </div>
+          <div class="find-widget">
+            <strong class="find-widget-label">Message: </strong>
+            <span class="find-widget-value text-black">{{ contactForm.get('message')?.value
+              }}</span>
+          </div>
         </div>
       </div>
 
@@ -75,7 +85,7 @@
           <!-- Form Submit -->
           <div class="form-submit mt-5">
             <button class="btn btn-dark" type="submit" [disabled]="contactForm.invalid" id="form-submit">
-              <i class="material-icons mdi mdi-message-outline"></i> Send Message
+              <i class="material-icons mdi mdi-message-outline"></i> Send Mail
             </button>
             <div id="msgSubmit" class="h3 text-center hidden"></div>
             <div class="clearfix"></div>

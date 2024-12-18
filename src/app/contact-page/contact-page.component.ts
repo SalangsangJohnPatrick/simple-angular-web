@@ -13,7 +13,6 @@ export class ContactPageComponent implements OnInit, OnDestroy {
 
   contactForm: FormGroup;
   private subscriptions: Subscription[] = [];
-  // submitted: boolean;
 
   constructor(
     private formBuilder: FormBuilder,
@@ -40,7 +39,6 @@ export class ContactPageComponent implements OnInit, OnDestroy {
   onSubmit(): void {
     // // Save the form data to local storage
     // localStorage.setItem('contactFormData', JSON.stringify(this.contactForm.value));
-    console.log('Form data sent:', this.contactForm.value);
 
     // Display the SweetAlert with an interactive confirmation
     Swal.fire({

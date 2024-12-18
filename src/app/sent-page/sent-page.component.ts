@@ -1,13 +1,18 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ContactService } from '../services/contact.service';
-import { map } from 'rxjs';
+import { map, Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-sent-page',
   templateUrl: './sent-page.component.html',
   styleUrls: ['./sent-page.component.css']
 })
-export class SentPageComponent implements OnInit {
+export class SentPageComponent implements OnInit, OnDestroy {
+
+  isLoading: boolean = true;   // Track loading state
+  error: string | null = null; // Track error state
+  mails: any[] = [];           // Store mails locally if needed
+  mailSubscription!: Subscription; // To unsubscribe later if needed
 
   // Truncate helper function
   private truncateText(text: string, maxLength: number): string {
@@ -22,8 +27,8 @@ export class SentPageComponent implements OnInit {
     map(mails =>
       mails.map(mail => ({
         ...mail,
-        subject: this.truncateText(mail.subject, 30),  // Truncate subject to 30 characters
-        message: this.truncateText(mail.message, 50)   // Truncate message to 50 characters
+        subject: this.truncateText(mail.subject, 40),
+        message: this.truncateText(mail.message, 100)
       }))
     )
   );
@@ -31,8 +36,22 @@ export class SentPageComponent implements OnInit {
   constructor(private contactService: ContactService) {}
 
   ngOnInit(): void {
-    this.mails$.subscribe(mails => {
-      console.log(mails);
-    })
+    this.mailSubscription = this.mails$.subscribe({
+      next: mails => {
+        this.isLoading = false;  // Data loaded, stop loading spinner
+        this.mails = mails;      // Store mails locally for additional operations
+      },
+      error: err => {
+        this.isLoading = false;
+        this.error = 'Failed to load mails. Please try again later.';  // Handle errors
+      }
+    });
+  }
+
+  ngOnDestroy(): void {
+    // Unsubscribe to prevent memory leaks
+    if (this.mailSubscription) {
+      this.mailSubscription.unsubscribe();
+    }
   }
 }

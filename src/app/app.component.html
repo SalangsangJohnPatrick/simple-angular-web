@@ -1,19 +1,31 @@
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
     <div class="container">
       <a class="navbar-brand"> {{ title }} </a>
-      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExample07" aria-controls="navbarsExample07" aria-expanded="false" aria-label="Toggle navigation">
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExample07"
+        aria-controls="navbarsExample07" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
-  
+
       <div class="collapse navbar-collapse" id="navbarsExample07">
         <ul class="navbar-nav mr-auto">
           <!-- Home Nav Item -->
           <li class="nav-item">
-            <a routerLink="/home" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" class="nav-link">
+            <a routerLink="/home" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }"
+              class="nav-link">
               Home
             </a>
           </li>
-  
+
           <!-- Contact Nav Item -->
           <li class="nav-item">
             <a routerLink="/contact" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }"
@@ -32,6 +44,9 @@
         </ul>
       </div>
     </div>
-</nav>
+  </nav>
 
-<router-outlet></router-outlet>
+  <router-outlet></router-outlet>
+</body>
+
+</html>

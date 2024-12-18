@@ -1,32 +1,31 @@
-<div class="container mt-5">
-  <div class="row justify-content-center">
-    <div class="col-md-10">
-      <div class="card shadow-lg">
-        <div class="card-header bg-dark text-white">
-          <h2 class="mb-0 text-center" style="font-family: 'Roboto', sans-serif; font-weight: 600;">Sent Mails</h2>
-        </div>
-        <div class="card-body p-4">
-          <table class="table table-hover table-bordered" style="width: 100%; table-layout: auto;">
-            <thead class="thead-dark">
-              <tr>
-                <th scope="col" class="text-center" style="font-size: 1.1rem; font-weight: 500;">Name</th>
-                <th scope="col" class="text-center" style="font-size: 1.1rem; font-weight: 500;">Email</th>
-                <th scope="col" class="text-center" style="font-size: 1.1rem; font-weight: 500;">Subject</th>
-                <th scope="col" class="text-center" style="font-size: 1.1rem; font-weight: 500;">Message</th>
-              </tr>
-            </thead>
-            <tbody>
-              <!-- Loop through messages using *ngFor -->
-              <tr *ngFor="let mail of mails$ | async">
-                <td class="align-middle" style="font-size: 1rem;">{{ mail.name }}</td>
-                <td class="align-middle" style="font-size: 1rem;">{{ mail.email }}</td>
-                <td class="align-middle" style="font-size: 1rem;">{{ mail.subject }}</td>
-                <td class="align-middle" style="font-size: 1rem;">{{ mail.message }}</td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-      </div>
+<div class="container col-md-10">
+  <div class="card shadow-lg">
+    <div class="card-header bg-light text-dark">
+      <h4 class="mb-0">View sent mails here</h4>
+    </div>
+    <div class="card-body p-4">
+      <!-- Loading state -->
+      <p class="text-center" *ngIf="isLoading">Loading mails...</p>
+
+      <!-- Error state -->
+      <p class="text-center text-danger" *ngIf="error">{{ error }}</p>
+
+      <!-- Content -->
+      <ng-container *ngIf="!isLoading && !error">
+        <ng-container *ngIf="mails.length > 0; else noMails">
+          <ngb-accordion>
+            <ngb-panel *ngFor="let mail of mails" [title]="mail.name + ' - ' + mail.email">
+              <ng-template ngbPanelContent>
+                <p><strong>Subject:</strong> {{ mail.subject || 'No subject provided' }}</p>
+                <p><strong>Message:</strong> {{ mail.message || 'No message content available' }}</p>
+              </ng-template>
+            </ngb-panel>
+          </ngb-accordion>
+        </ng-container>
+        <ng-template #noMails>
+          <p class="text-center">No mails found.</p>
+        </ng-template>
+      </ng-container>
     </div>
   </div>
 </div>
