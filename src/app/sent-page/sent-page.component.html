@@ -4,13 +4,11 @@
       <h4 class="mb-0">View sent mails here</h4>
     </div>
     <div class="card-body p-4">
-      <!-- Loading state -->
+
       <p class="text-center" *ngIf="isLoading">Loading mails...</p>
 
-      <!-- Error state -->
       <p class="text-center text-danger" *ngIf="error">{{ error }}</p>
 
-      <!-- Content -->
       <ng-container *ngIf="!isLoading && !error">
         <ng-container *ngIf="mails.length > 0; else noMails">
           <ngb-accordion>

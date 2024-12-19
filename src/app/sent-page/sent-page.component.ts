@@ -14,7 +14,6 @@ export class SentPageComponent implements OnInit, OnDestroy {
   mails: any[] = [];           // Store mails locally if needed
   mailSubscription!: Subscription; // To unsubscribe later if needed
 
-  // Truncate helper function
   private truncateText(text: string, maxLength: number): string {
     if (text.length > maxLength) {
       return text.substring(0, maxLength) + '...';
@@ -22,7 +21,6 @@ export class SentPageComponent implements OnInit, OnDestroy {
     return text;
   }
 
-  // Use pipe operator to transform data with RxJS
   mails$ = this.contactService.mails$.pipe(
     map(mails =>
       mails.map(mail => ({
@@ -49,7 +47,6 @@ export class SentPageComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy(): void {
-    // Unsubscribe to prevent memory leaks
     if (this.mailSubscription) {
       this.mailSubscription.unsubscribe();
     }

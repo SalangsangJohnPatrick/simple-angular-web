@@ -1,13 +1,13 @@
 <section class="Material-contact-section section-padding section-dark">
   <div class="container">
     <div class="row">
-      <!-- Section Titile -->
+
       <div class="col-md-12 wow animated fadeInLeft" data-wow-delay=".2s">
         <h1 class="section-title">Send a message to:</h1>
       </div>
     </div>
     <div class="row">
-      <!-- Section Title -->
+
       <div class="col-md-6 mt-3 contact-widget-section2 wow animated fadeInLeft" data-wow-delay=".2s">
         <div class="card shadow-sm rounded p-4">
           <p class="section-description mb-4 text-muted">To get in touch with somebody, fill the form to send an email
@@ -37,11 +37,10 @@
         </div>
       </div>
 
-      <!-- contact form -->
       <div class="col-md-6 wow animated fadeInRight" data-wow-delay=".2s">
         <form [formGroup]="contactForm" (ngSubmit)="onSubmit()" class="shake" role="form" method="post"
           id="contactForm">
-          <!-- Name -->
+
           <div class="form-group label-floating">
             <label class="control-label" for="name">Name</label>
             <input formControlName="name" class="form-control" type="text" id="name">
@@ -51,7 +50,6 @@
             </div>
           </div>
 
-          <!-- Email -->
           <div class="form-group label-floating">
             <label class="control-label" for="email">Email</label>
             <input formControlName="email" class="form-control" type="email">
@@ -62,7 +60,6 @@
             </div>
           </div>
 
-          <!-- Subject -->
           <div class="form-group label-floating">
             <label class="control-label">Subject</label>
             <input formControlName="subject" class="form-control" id="msg_subject" type="text">
@@ -72,7 +69,6 @@
             </div>
           </div>
 
-          <!-- Message -->
           <div class="form-group label-floating">
             <label for="message" class="control-label">Message</label>
             <textarea formControlName="message" class="form-control" id="message" rows="3"></textarea>
@@ -82,7 +78,6 @@
             </div>
           </div>
 
-          <!-- Form Submit -->
           <div class="form-submit mt-5">
             <button class="btn btn-dark" type="submit" [disabled]="contactForm.invalid" id="form-submit">
               <i class="material-icons mdi mdi-message-outline"></i> Send Mail

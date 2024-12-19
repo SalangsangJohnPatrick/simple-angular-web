@@ -17,7 +17,6 @@ export class ContactPageComponent implements OnInit, OnDestroy {
   constructor(
     private formBuilder: FormBuilder,
     private contactService: ContactService) {
-    // Initialize the form
     this.contactForm = this.formBuilder.group({
       name: ['', Validators.required],
       email: ['', [Validators.required, Validators.email]],
@@ -27,7 +26,6 @@ export class ContactPageComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
-    // Subscribe to form changes and update the service's BehaviorSubjects
     this.subscriptions.push(
       this.contactForm.get('name')!.valueChanges.subscribe(value => this.contactService.name = value),
       this.contactForm.get('email')!.valueChanges.subscribe(value => this.contactService.email = value),
@@ -37,10 +35,6 @@ export class ContactPageComponent implements OnInit, OnDestroy {
   }
 
   onSubmit(): void {
-    // // Save the form data to local storage
-    // localStorage.setItem('contactFormData', JSON.stringify(this.contactForm.value));
-
-    // Display the SweetAlert with an interactive confirmation
     Swal.fire({
       title: 'Are you sure?',
       text: 'Do you want to submit the form?',
@@ -51,7 +45,6 @@ export class ContactPageComponent implements OnInit, OnDestroy {
       reverseButtons: true
     }).then((result) => {
       if (result.isConfirmed) {
-        // Handle the successful confirmation (form submission)
         Swal.fire('Success!', 'Form submitted successfully!', 'success');
 
         this.contactService.addMailToOutbox(this.contactForm.value);
@@ -66,7 +59,6 @@ export class ContactPageComponent implements OnInit, OnDestroy {
 
 
   ngOnDestroy(): void {
-    // Unsubscribe from all subscriptions when the component is destroyed
     this.subscriptions.forEach(sub => sub.unsubscribe());
   }
 }
