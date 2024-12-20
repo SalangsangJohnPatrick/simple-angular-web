@@ -1,6 +1,7 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ContactService } from '../services/contact.service';
 import { map, Subscription } from 'rxjs';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-sent-page',
@@ -50,5 +51,31 @@ export class SentPageComponent implements OnInit, OnDestroy {
     if (this.mailSubscription) {
       this.mailSubscription.unsubscribe();
     }
+  }
+
+  deleteMail(mailId: number): void {
+    Swal.fire({
+      title: 'Are you sure?',
+      text: 'Do you want to delete this mail?',
+      icon: 'question',
+      showCancelButton: true,
+      confirmButtonText: 'Yes, delete it!',
+      cancelButtonText: 'No, cancel!',
+      reverseButtons: true
+    }).then((result) => {
+      if (result.isConfirmed) {
+        this.contactService.deleteMail(mailId).subscribe({
+          next: () => {
+            this.mails = this.mails.filter(mail => mail.id !== mailId);
+            Swal.fire('Deleted!', 'The mail has been deleted.', 'success');
+          },
+          error: () => {
+            Swal.fire('Failed!', 'Failed to delete the mail.', 'error');
+          }
+        });
+      } else if (result.dismiss === Swal.DismissReason.cancel) {
+        Swal.fire('Cancelled', 'The mail deletion was cancelled.', 'error');
+      }
+    });
   }
 }

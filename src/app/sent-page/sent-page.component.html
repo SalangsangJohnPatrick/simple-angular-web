@@ -16,6 +16,10 @@
               <ng-template ngbPanelContent>
                 <p><strong>Subject:</strong> {{ mail.subject || 'No subject provided' }}</p>
                 <p><strong>Message:</strong> {{ mail.message || 'No message content available' }}</p>
+                <!-- Delete button -->
+                <button class="btn btn-danger btn-sm" (click)="deleteMail(mail.id)">
+                  Delete
+                </button>
               </ng-template>
             </ngb-panel>
           </ngb-accordion>
