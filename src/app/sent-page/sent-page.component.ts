@@ -37,12 +37,20 @@ export class SentPageComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     this.mailSubscription = this.mails$.subscribe({
       next: mails => {
-        this.isLoading = false;  // Data loaded, stop loading spinner
-        this.mails = mails;      // Store mails locally for additional operations
+        this.isLoading = false;
+
+        // Check if mails is not null or undefined
+        if (mails && mails.length > 0) {
+          this.mails = mails;  // Assign the mails array to local variable
+          console.log('Updated mails:', mails);
+        } else {
+          console.log('No mails available.');
+          this.mails = [];  // Handle the case when there are no mails
+        }
       },
       error: err => {
         this.isLoading = false;
-        this.error = 'Failed to load mails. Please try again later.';  // Handle errors
+        this.error = 'Failed to load mails. Please try again later.';
       }
     });
   }
@@ -66,15 +74,15 @@ export class SentPageComponent implements OnInit, OnDestroy {
       if (result.isConfirmed) {
         this.contactService.deleteMail(mailId).subscribe({
           next: () => {
+            // Filter the mails in the component after the service deletes it
             this.mails = this.mails.filter(mail => mail.id !== mailId);
             Swal.fire('Deleted!', 'The mail has been deleted.', 'success');
+            console.log('Mails after deletion:', this.mails);
           },
           error: () => {
             Swal.fire('Failed!', 'Failed to delete the mail.', 'error');
           }
         });
-      } else if (result.dismiss === Swal.DismissReason.cancel) {
-        Swal.fire('Cancelled', 'The mail deletion was cancelled.', 'error');
       }
     });
   }

@@ -11,25 +11,41 @@ export class ContactService {
   private _subject: BehaviorSubject<string> = new BehaviorSubject<string>('');
   private _message: BehaviorSubject<string> = new BehaviorSubject<string>('');
 
-  private _mails: BehaviorSubject<{ id: number, name: string, email: string, subject: string, message: string }[]> = 
-    new BehaviorSubject<{ id: number,name: string, email: string, subject: string, message: string }[]>([]);
+  private _mails: BehaviorSubject<{ id: number, name: string, email: string, subject: string, message: string }[]> =
+    new BehaviorSubject<{ id: number, name: string, email: string, subject: string, message: string }[]>([]);
+
+  private nextMailId = 1;  // Start ID counter at 1 or wherever you'd like
 
   constructor() { }
 
-  addMailToOutbox(newMail: { id: number, name: string, email: string, subject: string, message: string }) {
+  addMailToOutbox(newMail: { name: string, email: string, subject: string, message: string }) {
     const currentMessages = this._mails.getValue();
-    this._mails.next([...currentMessages, newMail]);
+    
+    // Ensure the new mail has a unique ID
+    const mailWithId = { id: this.nextMailId++, ...newMail };
+
+    this._mails.next([...currentMessages, mailWithId]);
+
+    console.log('Added new mail:', mailWithId);  // Log the added mail for debugging
   }
 
   deleteMail(mailId: number): Observable<void> {
     const currentMessages = this._mails.getValue();
+    
+    console.log('Current mails before deletion:', currentMessages);
+
+    // Filter out the mail with the specific mailId
     const updatedMessages = currentMessages.filter(mail => mail.id !== mailId);
+
+    console.log('Updated mails after deletion:', updatedMessages);
+
+    // Update the BehaviorSubject with the new array
     this._mails.next(updatedMessages);
 
-    return of();
+    return of();  // Simulate successful deletion
   }
 
-  get mails$(): Observable<{ id: number,name: string, email: string, subject: string, message: string }[]> {
+  get mails$(): Observable<{ id: number, name: string, email: string, subject: string, message: string }[]> {
     return this._mails.asObservable();
   }
 
