@@ -20,16 +20,16 @@ describe('AppComponent', () => {
     expect(app).toBeTruthy();
   });
 
-  it(`should have as title 'nav-activity'`, () => {
+  it(`should have as title 'simple-angular-web'`, () => {
     const fixture = TestBed.createComponent(AppComponent);
     const app = fixture.componentInstance;
-    expect(app.title).toEqual('nav-activity');
+    expect(app.title).toEqual('simple-angular-web');
   });
 
   it('should render title', () => {
     const fixture = TestBed.createComponent(AppComponent);
     fixture.detectChanges();
     const compiled = fixture.nativeElement as HTMLElement;
-    expect(compiled.querySelector('.content span')?.textContent).toContain('nav-activity app is running!');
+    expect(compiled.querySelector('.content span')?.textContent).toContain('simple-angular-web app is running!');
   });
 });

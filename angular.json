@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "nav-activity": {
+    "simple-angular-web": {
       "projectType": "application",
       "schematics": {},
       "root": "",
@@ -13,7 +13,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/nav-activity",
+            "outputPath": "dist/simple-angular-web",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": [
@@ -62,10 +62,10 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "browserTarget": "nav-activity:build:production"
+              "browserTarget": "simple-angular-web:build:production"
             },
             "development": {
-              "browserTarget": "nav-activity:build:development"
+              "browserTarget": "simple-angular-web:build:development"
             }
           },
           "defaultConfiguration": "development"
@@ -73,7 +73,7 @@
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "nav-activity:build"
+            "browserTarget": "simple-angular-web:build"
           }
         },
         "test": {
